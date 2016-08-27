@@ -36,8 +36,6 @@ public class ForecastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle SavedInstanceState) {
 
-        View rootView = layoutInflater.inflate(R.layout.fragment_one, container);
-
         ArrayList<String> fakedata = new ArrayList(6);
         fakedata.add("Today - Sunny - 88/63");
         fakedata.add("Tommorow - Foggy - 70/46");
@@ -48,6 +46,8 @@ public class ForecastFragment extends Fragment {
 
         ArrayAdapter<String> fragmentAdapterOne = new ArrayAdapter(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, fakedata);
 
+        View rootView = layoutInflater.inflate(R.layout.fragment_one, container);
+
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
         listView.setAdapter(fragmentAdapterOne);
 
@@ -56,14 +56,12 @@ public class ForecastFragment extends Fragment {
     }
 
 
-       public class FetchWeatherTask extends AsyncTask<Void, Void, Void> {
+    public class FetchWeatherTask extends AsyncTask<Void, Void, Void> {
 
             private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
 
             @Override
             protected Void doInBackground(Void... params) {
-
-
                 // These two need to be declared outside the try/catch
                 // so that they can be closed in the finally block.
                 HttpURLConnection urlConnection = null;
@@ -76,7 +74,9 @@ public class ForecastFragment extends Fragment {
                     // Construct the URL for the OpenWeatherMap query
                     // Possible parameters are avaiable at OWM's forecast API page, at
                     // http://openweathermap.org/API#forecast
-                    URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7");
+                    String baseUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7";
+                    String apiKey = "&APPID=" + BuildConfig.OPEN_WEATHER_MAP_API_KEY;
+                    URL url = new URL(baseUrl.concat(apiKey));
 
                     // Create the request to OpenWeatherMap, and open the connection
                     urlConnection = (HttpURLConnection) url.openConnection();
@@ -118,12 +118,12 @@ public class ForecastFragment extends Fragment {
                         try {
                             reader.close();
                         } catch (final IOException e) {
-                            Log.e("PlaceholderFragment", "Error closing stream", e);
+                            Log.e(LOG_TAG, "Error closing stream", e);
                         }
                     }
                 }
                 return null;
             }
         }
-}
+    }
 

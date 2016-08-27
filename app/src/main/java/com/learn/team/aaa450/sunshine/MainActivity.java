@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
 
-        getMenuInflater().inflate(R.menu.forecastfragment,menu);
+        getMenuInflater().inflate(R.menu.main,menu);
         return true;
     }
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings||super.onOptionsItemSelected(item);
     }
 }
 
