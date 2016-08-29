@@ -26,12 +26,11 @@ public class ForecastFragment extends Fragment {
     public ForecastFragment() {
     }
 
-    /*
-    @Override
+/*
     public void OnCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
-    */
+*/
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle SavedInstanceState) {
@@ -46,7 +45,23 @@ public class ForecastFragment extends Fragment {
 
         ArrayAdapter<String> fragmentAdapterOne = new ArrayAdapter(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, fakedata);
 
-        View rootView = layoutInflater.inflate(R.layout.fragment_one, container);
+
+
+        //THIS
+        //IS
+        //THE PARAMETER
+        //THAT CAUSED THE
+        //ERROR
+        View rootView = layoutInflater.inflate(R.layout.fragment_one, container,false);
+        //THE SOLUTIO
+        //WAS
+        //TO
+        //ADD THE PARAMETER "FALSE"
+        //AT THE END
+
+
+
+        //ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
         listView.setAdapter(fragmentAdapterOne);
