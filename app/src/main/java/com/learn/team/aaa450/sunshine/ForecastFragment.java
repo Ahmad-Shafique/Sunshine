@@ -11,8 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,6 +104,14 @@ public class ForecastFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
         listView.setAdapter(fragmentAdapterOne);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String forecast = fragmentAdapterOne.getItem(position);
+                Toast.makeText(getActivity(),forecast,Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //return layoutInflater.inflate(R.layout.fragment_one,container,false);************************************************
         return rootView;
@@ -231,7 +241,7 @@ public class ForecastFragment extends Fragment {
 
                     URL url = new URL(customUri.toString());
 
-                    Log.v(LOG_TAG , "BuiltUri" + customUri.toString());
+                    //Log.v(LOG_TAG , "BuiltUri" + customUri.toString());
 
                     /*
                     String baseUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=29.2651823&lon=47.937929&cnt=7&units=metric";
@@ -268,7 +278,7 @@ public class ForecastFragment extends Fragment {
                     }
                     forecastJsonStr = buffer.toString();
 
-                    Log.v(LOG_TAG, "Forecast JSON String: " + forecastJsonStr);
+                    //Log.v(LOG_TAG, "Forecast JSON String: " + forecastJsonStr);
 
                 } catch (IOException e) {
                     Log.e(LOG_TAG, "Error ", e);
