@@ -63,6 +63,12 @@ public class ForecastFragment extends Fragment {
             fetch.execute("45545");
             return true;
         }
+        /*
+        else if(id == R.id.action_settings){
+            ////////***********Call the SettingsActivity here
+            return true;
+        }
+        */
 
         return super.onOptionsItemSelected(item);
     }
