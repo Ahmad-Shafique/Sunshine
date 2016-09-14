@@ -91,7 +91,7 @@ public class ForecastFragment extends Fragment {
         //THAT CAUSED THE
         //ERROR
         View rootView = layoutInflater.inflate(R.layout.fragment_one, container,false);
-        //THE SOLUTIO
+        //THE SOLUTION
         //WAS
         //TO
         //ADD THE PARAMETER "FALSE"

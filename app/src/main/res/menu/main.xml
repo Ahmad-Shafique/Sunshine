@@ -9,5 +9,5 @@
         app:showAsAction="never" />
     <item android:id="@+id/action_map"
         android:title="@string/action_map"
-        android:showAsAction="never" />
+        app:showAsAction="never" />
 </menu>
